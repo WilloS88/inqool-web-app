@@ -1,7 +1,15 @@
+import { DataProvider } from "./components/DataProvider";
+import { UsersPage } from "./pages/UsersPage";
+import { AnimalsPage } from "./pages/AnimalsPage";
 import "./index.css";
 
 function App() {
-  return <div className="flex justify-center text-red-600">test</div>;
+  return (
+    <DataProvider>
+      <UsersPage />
+      <AnimalsPage />
+    </DataProvider>
+  );
 }
 
 export default App;
