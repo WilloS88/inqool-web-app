@@ -1,18 +1,6 @@
 import { createContext } from "react";
-
-type User = {
-  id: string;
-  name: string;
-  gender: "female" | "male" | "other";
-  banned: boolean;
-};
-
-type Animal = {
-  id: string;
-  name: string;
-  type: "cat" | "dog" | "other";
-  age: number;
-};
+import type { User } from "../types/User";
+import type { Animal } from "../types/Animal";
 
 export type DataContextType = {
   users: User[];

@@ -1,11 +1,11 @@
-import { House, UsersRound, PawPrint, Sun, Moon } from "lucide-react";
+import { House, UsersRoundIcon, PawPrintIcon, SunIcon, MoonIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <div className="px-5 py-5 flex items-center justify-between bg-slate-200">
       <div>
-        <img src="../../../public/vite.svg" alt="" />
+        <img src="../../../vite.svg" alt="" />
       </div>
       <div className="flex gap-7">
         <Link to="/" className="flex cursor-pointer items-center gap-2 border-2 p-2 rounded-xl">
@@ -13,20 +13,20 @@ export const Navbar = () => {
           Home
         </Link>
         <Link to="/users" className="flex cursor-pointer items-center gap-2 border-2 p-2 rounded-xl">
-          <UsersRound />
+          <UsersRoundIcon />
           Users
         </Link>
         <Link to="/animals" className="flex cursor-pointer items-center gap-2 border-2 p-2 rounded-xl">
-          <PawPrint />
+          <PawPrintIcon />
           Animals
         </Link>
       </div>
       <div className="flex gap-5">
         <button className="cursor-pointer">
-          <Sun />
+          <SunIcon />
         </button>
         <button className="cursor-pointer">
-          <Moon />
+          <MoonIcon />
         </button>
       </div>
     </div>

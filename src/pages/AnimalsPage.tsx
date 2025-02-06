@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { DataContext } from "../components/DataContext";
+import { EntityList } from "../components/EntityList";
+import { AnimalCard } from "../components/card/AnimalCard";
 
 export const AnimalsPage = () => {
   const data = useContext(DataContext);
@@ -8,18 +10,11 @@ export const AnimalsPage = () => {
     return <p>Error: Data context is not available.</p>;
   }
 
-  const { animals } = data;
-
   return (
-    <div>
-      <h2>Animals</h2>
-      <ul>
-        {animals.map((animal) => (
-          <li key={animal.id}>
-            {animal.name} ({animal.type}, {animal.age} years old)
-          </li>
-        ))}
-      </ul>
-    </div>
+    <EntityList
+      title="Animals"
+      items={data.animals}
+      CardComponent={AnimalCard}
+    />
   );
 };
