@@ -1,6 +1,7 @@
 type ButtonProps = {
   label: string;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
   icon?: React.ReactNode;
 };
@@ -8,6 +9,7 @@ type ButtonProps = {
 export const Button = ({
   label,
   onClick,
+  disabled = false,
   className = "",
   icon,
 }: ButtonProps) => {
@@ -17,7 +19,10 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`${baseStyles} ${className}`}
+      disabled={disabled}
+      className={`${baseStyles} ${
+        disabled ? "cursor-not-allowed opacity-50" : ""
+      } ${className}`}
     >
       {icon && <span className="mr-2">{icon}</span>}
       {label}
