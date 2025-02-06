@@ -48,7 +48,7 @@ export const AnimalCard = ({ item }: { item: Animal }) => {
               </button>
               <button
                 onClick={handleDelete}
-                className="flex cursor-pointer items-center gap-1 rounded bg-red-500 px-2 py-1 text-white duration-150 hover:bg-red-600"
+                className="flex cursor-pointer items-center gap-1 rounded bg-red-500 px-2 py-1 text-white duration-150 hover:bg-red-700"
               >
                 <DeleteIcon />
               </button>
