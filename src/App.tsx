@@ -1,14 +1,20 @@
 import { DataProvider } from "./components/DataProvider";
-import { UsersPage } from "./pages/UsersPage";
-import { AnimalsPage } from "./pages/AnimalsPage";
+import { Navbar } from "./components/ui/Navbar";
+import { Footer } from "./components/ui/Footer";
+import { Outlet } from "react-router-dom";
 import "./index.css";
 
 function App() {
   return (
-    <DataProvider>
-      <UsersPage />
-      <AnimalsPage />
-    </DataProvider>
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <DataProvider>
+        <main className="flex-grow">
+          <Outlet />
+        </main>
+      </DataProvider>
+      <Footer />
+    </div>
   );
 }
 
