@@ -44,7 +44,7 @@ export const AnimalTableRow = ({ item }: { item: Animal }) => {
             <ShellIcon />
           )}
         </td>
-        <td className=" min-w-xs px-6 whitespace-nowrap">{item.name}</td>
+        <td className="min-w-xs px-6 whitespace-nowrap">{item.name}</td>
         <td className="px-6 whitespace-nowrap">
           {item.type === "cat" ? (
             <>Cat</>
@@ -58,12 +58,12 @@ export const AnimalTableRow = ({ item }: { item: Animal }) => {
         <td className="flex px-6 py-4 whitespace-nowrap">
           <Button
             onClick={() => setIsEditing(true)}
-            className="mr-2 bg-yellow-500 text-white hover:bg-yellow-600"
+            className="mr-2 bg-yellow-500 text-white duration-150 hover:bg-yellow-600"
             icon={<EditIcon />}
           />
           <Button
             onClick={handleDelete}
-            className="bg-red-500 text-white hover:bg-red-700"
+            className="bg-red-500 text-white duration-150 hover:bg-red-800"
             icon={<DeleteIcon />}
           />
         </td>
@@ -84,5 +84,3 @@ export const AnimalTableRow = ({ item }: { item: Animal }) => {
     </>
   );
 };
-
-

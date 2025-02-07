@@ -171,13 +171,13 @@ export const AddEntityModal = ({
           <div className="mt-4 flex justify-between">
             <Button
               type="button"
-              className="rounded-md bg-gray-400 px-4 py-2 text-white"
+              className="rounded-md bg-gray-400 px-4 py-2 text-white duration-150 hover:bg-gray-500"
               onClick={onClose}
               label="Go Back"
             />
             <Button
               type="submit"
-              className="rounded-md bg-indigo-600 px-4 py-2 text-white"
+              className="flex justify-center rounded-md bg-indigo-600 px-4 py-2 text-white shadow-lg duration-150 hover:bg-indigo-800"
               label="Submit"
             />
           </div>

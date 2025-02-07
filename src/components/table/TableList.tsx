@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FilterSection } from "../FilterSection";
 import { BarLoader } from "react-spinners";
+import { AddButton } from "../AddButton";
 
 type TableListProps<T> = {
   title: string;
@@ -32,13 +33,14 @@ export const TableList = <T extends { id: string; name: string }>({
   return (
     <div className="mb-2 flex justify-center p-4">
       <div className="flex w-full max-w-5xl flex-col">
-        <h2 className="mb-4 text-center text-2xl font-bold">{title}</h2>
+        <h2 className="mb-7 text-center text-3xl font-bold">{title}</h2>
 
-        <div className="flex justify-center">
+        <div className="mb-8 flex items-center justify-evenly">
           <FilterSection
             filterText={filterText}
             setFilterText={setFilterText}
           />
+          <AddButton />
         </div>
 
         {items.length === 0 ? (
@@ -87,21 +89,24 @@ export const TableList = <T extends { id: string; name: string }>({
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className={`relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:outline-none ${
-                  currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
+                className={`relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 duration-150 ring-inset focus:outline-none ${
+                  currentPage === 1
+                    ? "cursor-not-allowed opacity-50"
+                    : "cursor-pointer hover:bg-gray-200"
                 }`}
               >
                 Previous
               </button>
+
               <button
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 disabled={currentPage === totalPages}
-                className={`relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:outline-none ${
+                className={`relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 duration-150 ring-inset focus:outline-none ${
                   currentPage === totalPages
                     ? "cursor-not-allowed opacity-50"
-                    : ""
+                    : "cursor-pointer hover:bg-gray-200"
                 }`}
               >
                 Next

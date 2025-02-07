@@ -1,4 +1,4 @@
-import { Button } from "./components/ui/Button";
+import { Button } from "./ui/Button";
 import { Search } from "lucide-react";
 
 type FilterSectionProps = {
@@ -11,7 +11,7 @@ export const FilterSection = ({
   setFilterText,
 }: FilterSectionProps) => {
   return (
-    <div className="mb-5 flex w-full max-w-lg gap-2 lg:max-w-xs">
+    <div className="flex w-full max-w-lg gap-2 lg:max-w-xs">
       <div className="relative w-full">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <Search className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -29,7 +29,7 @@ export const FilterSection = ({
       <Button
         label="Clear"
         onClick={() => setFilterText("")}
-        className="bg-red-500 py-1.5 text-white hover:bg-red-700"
+        className="bg-red-500 py-1.5 text-white duration-150 hover:bg-red-800"
       />
     </div>
   );

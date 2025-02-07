@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
+import { BeatLoader } from "react-spinners";
 
 const editEntitySchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -42,6 +43,8 @@ export const EditEntityModal = ({
     defaultValues: entity,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       reset(entity);
@@ -49,6 +52,7 @@ export const EditEntityModal = ({
   }, [isOpen, entity, reset]);
 
   const onSubmit = async (data: EditEntityFormValues) => {
+    setIsSubmitting(true);
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_BASE_URL}/${endpoint}/${entity.id}`,
@@ -58,6 +62,8 @@ export const EditEntityModal = ({
       onClose();
     } catch (error) {
       console.error("Error updating entity:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -89,6 +95,7 @@ export const EditEntityModal = ({
                 {...register("name")}
                 placeholder="Enter name"
                 className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 shadow-sm ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                disabled={isSubmitting}
               />
               {errors.name && (
                 <p className="mt-1 text-sm text-red-500">
@@ -107,16 +114,12 @@ export const EditEntityModal = ({
                 <select
                   {...register("type")}
                   className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 shadow-sm ring-gray-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                  disabled={isSubmitting}
                 >
                   <option value="cat">Cat</option>
                   <option value="dog">Dog</option>
                   <option value="other">Other</option>
                 </select>
-                {errors.type && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.type.message}
-                  </p>
-                )}
               </div>
             </div>
           )}
@@ -132,12 +135,8 @@ export const EditEntityModal = ({
                   {...register("age", { valueAsNumber: true })}
                   placeholder="Enter age"
                   className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 shadow-sm ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                  disabled={isSubmitting}
                 />
-                {errors.age && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.age.message}
-                  </p>
-                )}
               </div>
             </div>
           )}
@@ -151,16 +150,12 @@ export const EditEntityModal = ({
                 <select
                   {...register("gender")}
                   className="block w-full rounded-md border-0 py-1.5 pr-10 pl-3 text-gray-900 ring-1 shadow-sm ring-gray-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                  disabled={isSubmitting}
                 >
                   <option value="female">Female</option>
                   <option value="male">Male</option>
                   <option value="other">Other</option>
                 </select>
-                {errors.gender && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.gender.message}
-                  </p>
-                )}
               </div>
             </div>
           )}
@@ -171,6 +166,7 @@ export const EditEntityModal = ({
                 type="checkbox"
                 {...register("banned")}
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                disabled={isSubmitting}
               />
               <label className="text-sm leading-6 font-medium text-gray-900">
                 Banned
@@ -183,12 +179,19 @@ export const EditEntityModal = ({
               type="button"
               onClick={onClose}
               label="Go Back"
-              className="rounded-md bg-gray-400 px-4 py-2 text-white"
+              className="rounded-md bg-gray-400 px-4 py-2 text-white duration-150 hover:bg-gray-500"
+              disabled={isSubmitting}
             />
             <Button
               type="submit"
-              label="Submit"
-              className="rounded-md bg-indigo-600 px-4 py-2 text-white"
+              className="flex justify-center rounded-md bg-indigo-600 px-4 py-2 text-white shadow-lg duration-150 hover:bg-indigo-800"
+              disabled={isSubmitting}
+              label={!isSubmitting ? "Submit" : ""}
+              icon={
+                isSubmitting ? (
+                  <BeatLoader color="white" size={10} margin={2} />
+                ) : undefined
+              }
             />
           </div>
         </form>
