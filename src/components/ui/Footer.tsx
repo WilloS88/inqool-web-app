@@ -1,30 +1,32 @@
+import {
+  Facebook as FacebookIcon,
+  Instagram as InstagramIcon,
+  Github as GithubIcon,
+  Youtube as YoutubeIcon,
+} from "lucide-react";
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white py-4">
-      <div className="container mx-auto px-4 flex items-center justify-between sm:flex-row flex-wrap">
-        <p className="text-center sm:text-left mb-4 sm:mb-0">
-          © {currentYear} John Doe. All rights reserved.
-        </p>
-        <div className="flex space-x-4">
-          <a
-            href="/"
-            className="hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="/"
-            className="hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Terms of Service
-          </a>
-        </div>
+    <footer className="mx-auto flex w-full min-w-full items-center justify-between rounded-lg border border-gray-200 bg-white px-5 py-6 text-gray-600">
+      <span className="text-sm">
+        © {currentYear} John Doe Company, Inc. All rights reserved.
+      </span>
+
+      <div className="flex gap-4">
+        <a href="#" className="transition hover:text-gray-900" target="_blank">
+          <FacebookIcon size={20} />
+        </a>
+        <a href="#" className="transition hover:text-gray-900" target="_blank">
+          <InstagramIcon size={20} />
+        </a>
+        <a href="#" className="transition hover:text-gray-900" target="_blank">
+          <GithubIcon size={20} />
+        </a>
+        <a href="#" className="transition hover:text-gray-900" target="_blank">
+          <YoutubeIcon size={20} />
+        </a>
       </div>
     </footer>
   );

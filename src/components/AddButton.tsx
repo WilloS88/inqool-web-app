@@ -22,7 +22,7 @@ export const AddButton = () => {
       <Button
         label={`Add ${isUsersPage ? "User" : "Animal"}`}
         onClick={() => setIsModalOpen(true)}
-        className="bg-green-500 text-white duration-200 hover:bg-green-600"
+        className="hover:bg-green-700 hover:shadow-green-600 rounded-lg bg-green-600 px-8 py-3 text-lg font-bold tracking-wide text-white shadow-lg shadow-green-600/20 transition duration-300 hover:text-white sm:px-9 sm:py-4 sm:text-xl"
         icon={<PlusCircle />}
       />
 
