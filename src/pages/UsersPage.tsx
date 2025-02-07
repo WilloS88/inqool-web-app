@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DataContext } from "../components/DataContext";
-import { EntityList } from "../components/EntityList";
-import { UserCard } from "../components/card/UserCard";
+import { TableList } from "../components/TableList";
+import { UserTableRow } from "../components/table/UserTableRow";
 import { AddButton } from "../components/AddButton";
 
 export const UsersPage = () => {
@@ -16,7 +16,12 @@ export const UsersPage = () => {
       <div className="flex justify-center">
         <AddButton />
       </div>
-      <EntityList title="Users" items={data.users} CardComponent={UserCard} />
+      <TableList
+        title="Users"
+        items={data.users}
+        headers={["Icon","Name", "Gender", "Banned", "Actions"]}
+        TableRowComponent={UserTableRow}
+      />
     </div>
   );
 };
