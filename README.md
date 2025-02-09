@@ -1,7 +1,7 @@
 # Inqool Web App
 
-This project is a front-end application based on fetching data from API and performing operations on them. 
-Its built with **React**, **Vite**, and **TypeScript**.
+- This project is a front-end application based on fetching data from API and performing operations on them. 
+- Its built with **React**, **Vite**, and **TypeScript**.
 ---
 
 ## Getting Started
