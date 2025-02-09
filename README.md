@@ -1,50 +1,70 @@
-# React + TypeScript + Vite
+# Inqool Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a front-end application based on fetching data from API and performing operations on them. 
+Its built with **React**, **Vite**, and **TypeScript**.
+---
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## Expanding the ESLint configuration
+- **Node.js** (version 14+)
+- **Docker** (if you want to use the Docker setup)
+- **npm** (Node Package Manager)
+- **.env** (Dont forget to use the API base url in your .env file)
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation & Setup
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/yourusername/inqool-web-app.git
+cd inqool-web-app
+npm install 
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Docker Setup
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+docker build -t inqool-web-app .
+docker run -p 80:80 inqool-web-app
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Folder structure
+
+```
+└── 📁src
+    └── 📁assets
+        └── companyLogo.svg
+        └── userIcon.svg
+    └── 📁components
+        └── AddButton.tsx
+        └── DataContext.ts
+        └── DataProvider.tsx
+        └── FilterSection.tsx
+        └── 📁modal
+            └── AddEntityModal.tsx
+            └── EditEntityModal.tsx
+            └── modalConfig.ts
+        └── 📁table
+            └── AnimalTableRow.tsx
+            └── TableList.tsx
+            └── UserTableRow.tsx
+        └── 📁ui
+            └── Button.tsx
+            └── Footer.tsx
+            └── Navbar.tsx
+    └── 📁pages
+        └── AnimalsPage.tsx
+        └── HomePage.tsx
+        └── NotFoundPage.tsx
+        └── UsersPage.tsx
+    └── 📁types
+        └── Animal.tsx
+        └── User.tsx
+    └── App.tsx
+    └── index.css
+    └── main.tsx
+    └── Router.tsx
+    └── vite-env.d.ts
 ```
