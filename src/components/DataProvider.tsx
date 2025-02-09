@@ -16,7 +16,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/users`);
       setUsers(response.data);
-      console.log(response);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -26,7 +25,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/animals`);
       setAnimals(response.data);
-      console.log(response);
     } catch (error) {
       console.error("Error fetching animals:", error);
     }

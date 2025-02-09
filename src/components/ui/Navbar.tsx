@@ -3,14 +3,13 @@ import {
   House as HouseIcon,
   UsersRound as UsersRoundIcon,
   PawPrint as PawPrintIcon,
-  Sun as SunIcon,
-  Moon as MoonIcon,
   Menu as MenuIcon,
   X as XIcon,
 } from "lucide-react";
+import companyLogo from "../../assets/companyLogo.svg";
+import userIcon from "../../assets/userIcon.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Button } from "./Button";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +19,7 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <img src="/vite.svg" alt="Logo" className="h-8 w-auto" />
+            <img src={companyLogo} alt="Logo" className="h-8 w-auto" />
           </div>
 
           <div className="hidden sm:flex sm:space-x-8">
@@ -31,8 +30,7 @@ export const Navbar = () => {
 
           <div className="hidden space-x-4 sm:flex sm:items-center">
             <div className="flex space-x-3">
-              <Button icon={<SunIcon />} />
-              <Button icon={<MoonIcon />} />
+              <img src={userIcon} alt="user" className="h-8 w-auto" /> 
             </div>
           </div>
 

@@ -4,7 +4,9 @@ import { useForm, FieldErrors } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useState } from "react";
 import { Button } from "../ui/Button";
+import { BeatLoader } from "react-spinners";
 
 const userSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -53,7 +55,10 @@ export const AddEntityModal = ({
   const typedErrors = errors as FieldErrors<UserFormValues> &
     FieldErrors<AnimalFormValues>;
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
     try {
       await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/${entityType}`,
@@ -64,6 +69,8 @@ export const AddEntityModal = ({
       reset();
     } catch (error) {
       console.error(`Error adding ${entityType}:`, error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -93,6 +100,7 @@ export const AddEntityModal = ({
               <input
                 type="text"
                 {...register("name")}
+                disabled={isSubmitting}
                 className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 shadow-sm ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 placeholder="Enter name"
               />
@@ -112,6 +120,7 @@ export const AddEntityModal = ({
                 </label>
                 <select
                   {...register("gender")}
+                  disabled={isSubmitting}
                   className="mt-2 block w-full rounded-md border-0 py-1.5 pr-10 pl-3 text-gray-900 ring-1 ring-gray-300 ring-inset focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   <option value="female">Female</option>
@@ -124,6 +133,7 @@ export const AddEntityModal = ({
                 <input
                   type="checkbox"
                   {...register("banned")}
+                  disabled={isSubmitting}
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
                 <label className="text-sm leading-6 font-medium text-gray-900">
@@ -139,6 +149,7 @@ export const AddEntityModal = ({
                 </label>
                 <select
                   {...register("type")}
+                  disabled={isSubmitting}
                   className="mt-2 block w-full rounded-md border-0 py-1.5 pr-2 pl-2 text-gray-900 ring-1 ring-gray-300 ring-inset focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   <option value="cat">Cat</option>
@@ -155,6 +166,7 @@ export const AddEntityModal = ({
                   <input
                     type="number"
                     {...register("age", { valueAsNumber: true })}
+                    disabled={isSubmitting}
                     className="block w-full rounded-md border-0 py-1.5 pr-2 pl-3 text-gray-900 ring-1 ring-gray-300 ring-inset focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="Enter age"
                   />
@@ -171,14 +183,21 @@ export const AddEntityModal = ({
           <div className="mt-4 flex justify-between">
             <Button
               type="button"
-              className="rounded-md bg-gray-400 px-4 py-2 text-white duration-150 hover:bg-gray-500"
               onClick={onClose}
+              disabled={isSubmitting}
               label="Go Back"
+              className="rounded-md bg-gray-400 px-4 py-2 text-white duration-150 hover:bg-gray-500"
             />
             <Button
               type="submit"
+              disabled={isSubmitting}
+              label={!isSubmitting ? "Submit" : ""}
+              icon={
+                isSubmitting ? (
+                  <BeatLoader color="white" size={10} margin={2} />
+                ) : undefined
+              }
               className="flex justify-center rounded-md bg-indigo-600 px-4 py-2 text-white shadow-lg duration-150 hover:bg-indigo-800"
-              label="Submit"
             />
           </div>
         </form>
